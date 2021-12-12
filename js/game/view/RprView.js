@@ -1,10 +1,11 @@
 
 var GAME = GAME || {};
 
+
 GAME.RprView = function (engine) {
 	this.engine = engine;
+	this.renderer = PIXI.autoDetectRenderer(600, 800);
 
-    this.renderer = PIXI.autoDetectRenderer(600, 800);
 	GAME.HIGH_MODE = (this.renderer instanceof PIXI.WebGLRenderer);
 
 	this.stage = new PIXI.Stage();
@@ -16,11 +17,11 @@ GAME.RprView = function (engine) {
 	this.hud = new PIXI.DisplayObjectContainer();
 	this.game = new PIXI.DisplayObjectContainer();
 	this.gameFront = new PIXI.DisplayObjectContainer();
-
-	// this.container.addChild(this.game);
 	this.container.addChild(this.gameFront); // 初始场景的🔥的效果
 
 	this.stage.addChild(this.container);
+
+	this.lava = new GAME.Lava(this.gameFront);
 
 	this.count = 0;
 	this.zoom = 1;
@@ -60,6 +61,8 @@ GAME.RprView.prototype.update = function () {
 		this.container.scale.x = this.zoom;
 		this.container.scale.y = this.zoom;
 	}
+
+	this.lava.setPosition(GAME.camera.x + 4000);
 
 	this.renderer.render(this.stage);
 }

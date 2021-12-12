@@ -1,6 +1,7 @@
 domready(function () {
     onReady();
 });
+PIXI.Texture.fromFrameId = PIXI.Texture.fromFrame;
 
 window.addEventListener('resize', function () {
     resize();
