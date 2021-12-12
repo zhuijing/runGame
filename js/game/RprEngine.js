@@ -6,9 +6,7 @@ GAME.height;
 GAME.bundleId = "com.goodboy.runpixierun";
 GAME.newHighScore = false;
 GAME.RprEngine = function () {
-    this.steve = new GAME.Steve();
     this.view = new GAME.RprView(this);
-    this.steve.view.visible = false;
     this.bulletMult = 1;
     this.pickupCount = 0;
     this.score = 0;
@@ -18,8 +16,6 @@ GAME.RprEngine = function () {
     this.levelCount = 0;
     this.gameReallyOver = false;
     this.isDying = false;
-
-    this.view.game.addChild(this.steve.view);
 }
 
 

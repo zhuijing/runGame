@@ -143,8 +143,7 @@ function resize() {
             black.scale.y = h / 16;
         }
 
-        this.countdown.position.x = newWidth / 2;
-        this.countdown.position.y = h / 2;
+      
 
         game.view.resize(newWidth, h);
 
