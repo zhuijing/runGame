@@ -1,7 +1,7 @@
 /**
  * @author Mat Groves
  */
-
+// 游戏中火的效果
 var GAME = GAME || {};
 
 

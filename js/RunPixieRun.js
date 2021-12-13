@@ -105,6 +105,7 @@ function init() {
 
     requestAnimFrame(update);
 
+    
     black = new PIXI.Sprite.fromImage("img/blackSquare.jpg");
     this.game.view.hud.addChild(black); // 初始场景的半透明蒙层
 
@@ -117,6 +118,13 @@ function init() {
     logo.anchor.x = 0.5;
     logo.anchor.y = 0.5;
     logo.alpha = 0;
+    this.game.view.hud.addChild(logo);// 游戏的logo
+
+    TweenLite.to(logo, 0.1, {
+        alpha: 1,
+        delay: 0.6,
+        onComplete: onIntroFaded
+    });
 
     resize();
 }
@@ -153,6 +161,10 @@ function resize() {
     GAME.width = (width / ratio);
     GAME.height = h;
 }
+function onIntroFaded() {
+    interactive = true;
+}
+
 
 function update() {
     game.update();

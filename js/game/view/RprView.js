@@ -20,6 +20,7 @@ GAME.RprView = function (engine) {
 	this.container.addChild(this.gameFront); // 初始场景的🔥的效果
 
 	this.stage.addChild(this.container);
+	this.stage.addChild(this.hud);
 
 	this.lava = new GAME.Lava(this.gameFront);
 
