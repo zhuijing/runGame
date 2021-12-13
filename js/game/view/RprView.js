@@ -17,11 +17,20 @@ GAME.RprView = function (engine) {
 	this.hud = new PIXI.DisplayObjectContainer();
 	this.game = new PIXI.DisplayObjectContainer();
 	this.gameFront = new PIXI.DisplayObjectContainer();
-	this.container.addChild(this.gameFront); // 初始场景的🔥的效果
+	this.container.addChild(this.game);
+
+	// 初始场景的🔥的效果
+	this.container.addChild(this.gameFront); 
 
 	this.stage.addChild(this.container);
 	this.stage.addChild(this.hud);
 
+
+	// 初始背景
+	this.background = new GAME.Background();
+	this.game.addChild(this.background);
+
+	
 	this.lava = new GAME.Lava(this.gameFront);
 
 	this.count = 0;
