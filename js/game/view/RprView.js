@@ -29,6 +29,9 @@ GAME.RprView = function (engine) {
 	this.white = PIXI.Sprite.fromImage("img/whiteSquare.png");
 	GAME.xOffset = this.container.position.x;
 
+	this.dust = new GAME.PixiDust();
+	this.container.addChild(this.dust);
+
 }
 
 GAME.RprView.constructor = GAME.RprView;
@@ -61,6 +64,8 @@ GAME.RprView.prototype.update = function () {
 		this.container.scale.x = this.zoom;
 		this.container.scale.y = this.zoom;
 	}
+
+	this.dust.update();
 
 	this.lava.setPosition(GAME.camera.x + 4000);
 
