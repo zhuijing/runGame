@@ -90,12 +90,103 @@ function onStressTestComplete() {
     });
 
     loader.load();
+
     resize();
 }
 
+
+function onTap(event) {
+    event.originalEvent.preventDefault();
+
+    if (event.target.type !== 'button') {
+        if (!interactive) return;
+
+        if (gameMode === GAME_MODE.INTRO) {
+            interactive = false;
+            gameMode = GAME_MODE.TITLE;
+            logo.alpha = 0;
+            logo.scale.x = 1.5;
+            logo.scale.y = 1.5;
+            logo.setTexture(PIXI.Texture.fromFrame("assets/hud/pixieRevised_controls.png"));
+
+            TweenLite.to(logo, 0.1, {
+                alpha: 1
+            });
+
+            TweenLite.to(logo.scale, 1, {
+                x: 1,
+                y: 1,
+                ease: Elastic.easeOut,
+                onComplete: onIntroFaded
+            });
+        } else if (gameMode === GAME_MODE.TITLE) {
+            interactive = false;
+
+            game.start();
+            gameMode = GAME_MODE.COUNT_DOWN;
+            FidoAudio.setVolume('runRegular', 1);
+
+            if (black) {
+                TweenLite.to(black, 0.2, {
+                    alpha: 0
+                });
+            }
+
+            TweenLite.to(logo, 0.3, {
+                alpha: 0,
+                onComplete: function () {
+                    logo.visible = false;
+                    logo.setTexture(PIXI.Texture.fromFrame("gameOver.png"));
+                    game.view.showHud();
+                    game.view.hud.removeChild(black);
+                    countdown.startCountDown(onCountdownComplete);
+                }
+            });
+        } else if (gameMode === GAME_MODE.GAME_OVER) {
+            interactive = false;
+
+            // game.view.stage.addChild(black);
+
+            TweenLite.to(black, 0.3, {
+                alpha: 1,
+                onComplete: function () {
+                    game.steve.normalMode();
+                    game.joyrideComplete();
+
+                    game.steve.position.x = 0;
+                    GAME.camera.x = game.steve.position.x - 100;
+                    game.reset();
+                    logo.visible = false;
+                    gameMode = GAME_MODE.COUNT_DOWN;
+
+                    TweenLite.killTweensOf(GAME.camera);
+                    GAME.camera.zoom = 1;
+
+                    TweenLite.to(black, 0.3, {
+                        alpha: 0,
+                        onComplete: function () {
+                            logo.visible = false;
+                            game.start();
+                            FidoAudio.fadeIn('gameMusic');
+                            countdown.startCountDown(onCountdownComplete);
+                        }
+                    });
+                }
+            });
+        } else {
+            // handle our jump sound
+            thrusters = true;
+            if (game.isPlaying) game.steve.jump();
+        }
+    }
+}
+
+function onIntroFaded() {
+    interactive = true;
+}
 function init() {
     gameMode = GAME_MODE.INTRO;
-    interactive = false;
+    interactive = false; // 初始的时候不可点击
 
     game = new GAME.RprEngine();
 
@@ -126,6 +217,9 @@ function init() {
         onComplete: onIntroFaded
     });
 
+    this.game.view.container.mousedown = this.game.view.container.touchstart = function (event) {
+        onTap(event);
+    }
     resize();
 }
 function resize() {
