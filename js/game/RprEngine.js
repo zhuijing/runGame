@@ -11,6 +11,8 @@ GAME.RprEngine = function () {
 	this.collisionManager   = new GAME.CollisionManager(this);
 	this.segmentManager     = new GAME.SegmentManager(this);
 	this.floorManager       = new GAME.FloorManager(this);
+	this.pickupManager      = new GAME.PickupManager(this);
+
 	this.enemyManager       = new GAME.EnemyManager(this);
 
 
@@ -48,6 +50,7 @@ GAME.RprEngine.prototype.update = function () {
 	this.floorManager.update();
 	this.segmentManager.update();
 	this.enemyManager.update();
+	this.pickupManager.update()
     this.view.update();
     
 }

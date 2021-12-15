@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,36 +9,31 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <script>
-
-
-
-
-
-function log(count) {
-    let num = 0
-    return function(...arg) {
-        if(num < count ){
-            console.log(`object`, arg)
-            num++
+        function log(count) {
+            let num = 0
+            return function (...arg) {
+                if (num < count) {
+                    console.log(`object`, arg)
+                    num++
+                }
+            }
         }
-    }
-}
 
-var log10 = log(10)
-var log102 = log(10)
-
-
+        var log10 = log(10)
+        var log102 = log(10)
     </script>
 </head>
+
 <body>
     <script src="./SegmentData.js"></script>
     <script src="./js/ready.js"></script>
     <script type="text/javascript" src="js/tweenlite/TimelineLite.min.js"></script>
     <script type="text/javascript" src="js/tweenlite/TweenLite.min.js"></script>
     <script type="text/javascript" src="js/tweenlite/easing/EasePack.min.js"></script>
-   
+
     <script src="./js/pixi.js"></script>
-    <script type="text/javascript" src="js/GoodBoySplash.js"></script> 
+    <script src="js/Math2.js"></script>
+    <script type="text/javascript" src="js/GoodBoySplash.js"></script>
     <script type="text/javascript" src="js/RunPixieRun.js"></script>
     <script type="text/javascript" src="js/game/StressTest.js"></script>
     <script type="text/javascript" src="js/game/view/Background.js"></script>
@@ -46,8 +42,9 @@ var log102 = log(10)
     <script type="text/javascript" src="js/game/CollisionManager.js"></script>
     <script type="text/javascript" src="js/game/SegmentManager.js"></script>
     <script type="text/javascript" src="js/game/FloorManager.js"></script>
+    <script src="js/game/Pickup.js"></script>
 
-
+    <script src="js/game//PickupManager.js"></script>
     <script type="text/javascript" src="js/game/view/RprView.js"></script>
     <script type="text/javascript" src="js/game/RprEngine.js"></script>
     <script type="text/javascript" src="js/game/Steve.js"></script>
@@ -62,4 +59,5 @@ var log102 = log(10)
 
 
 </body>
+
 </html>
