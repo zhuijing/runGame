@@ -14,6 +14,7 @@ GAME.RprEngine = function () {
 	this.pickupManager      = new GAME.PickupManager(this);
 
 	this.enemyManager       = new GAME.EnemyManager(this);
+    this.steve.view.visible =  false;
 
 
     
@@ -26,6 +27,7 @@ GAME.RprEngine = function () {
 	this.levelCount = 0;
     this.gameReallyOver = false;
     this.isDying = false;
+    this.view.game.addChild(this.steve.view);
     
 }
 
@@ -41,6 +43,8 @@ GAME.RprEngine.prototype.start = function()
 	this.steve.speed.x = this.steve.baseSpeed;
 	this.steve.isFlying = false;
 	this.steve.isDead = false;
+	this.steve.view.visible = true;
+
 }
 
 GAME.RprEngine.prototype.update = function () {
