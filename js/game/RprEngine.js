@@ -11,6 +11,8 @@ GAME.RprEngine = function () {
 	this.collisionManager   = new GAME.CollisionManager(this);
 	this.segmentManager     = new GAME.SegmentManager(this);
 	this.floorManager       = new GAME.FloorManager(this);
+	this.enemyManager       = new GAME.EnemyManager(this);
+
 
     
 	this.bulletMult = 1;
@@ -45,6 +47,7 @@ GAME.RprEngine.prototype.update = function () {
     this.collisionManager.update();
 	this.floorManager.update();
 	this.segmentManager.update();
+	this.enemyManager.update();
     this.view.update();
     
 }

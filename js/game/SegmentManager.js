@@ -12,6 +12,7 @@ GAME.SegmentManager = function(engine)
 {
 	this.engine = engine;
 	
+	// data 就是 SegmentData.js
 	this.sections = data//[section1, section2];
 	this.count = 0;
 	this.currentSegment = data[0]
@@ -73,18 +74,22 @@ GAME.SegmentManager.prototype.update = function()
 		this.currentSegment = nextSegment;
 	
 		// add the elements!
+		// 加地板
 		for ( var i = 0; i < this.currentSegment.floor.length; i++) 
 		{
 			this.engine.floorManager.addFloor(this.currentSegment.start + this.currentSegment.floor[i]);
 		}
 		
-		// var blocks = this.currentSegment.blocks;
-		// var length = blocks.length/2;
+		var blocks = this.currentSegment.blocks;
+		var length = blocks.length/2;
+		console.log(`length`, length)
+		console.log(`blocks`, blocks)
 		
-		// for ( var i = 0; i < length; i++) 
-		// {
-		// 	this.engine.enemyManager.addEnemy(this.currentSegment.start + blocks[i*2], blocks[(i*2)+1]);
-		// }
+		// 加箱子
+		for ( var i = 0; i < length; i++) 
+		{
+			this.engine.enemyManager.addEnemy(this.currentSegment.start + blocks[i*2], blocks[(i*2)+1]);
+		}
 		
 		// var pickups = this.currentSegment.coins;
 		// var length = pickups.length/2;
