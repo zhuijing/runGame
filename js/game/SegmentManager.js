@@ -78,21 +78,21 @@ GAME.SegmentManager.prototype.update = function()
 			this.engine.floorManager.addFloor(this.currentSegment.start + this.currentSegment.floor[i]);
 		}
 		
-		var blocks = this.currentSegment.blocks;
-		var length = blocks.length/2;
+		// var blocks = this.currentSegment.blocks;
+		// var length = blocks.length/2;
 		
-		for ( var i = 0; i < length; i++) 
-		{
-			this.engine.enemyManager.addEnemy(this.currentSegment.start + blocks[i*2], blocks[(i*2)+1]);
-		}
+		// for ( var i = 0; i < length; i++) 
+		// {
+		// 	this.engine.enemyManager.addEnemy(this.currentSegment.start + blocks[i*2], blocks[(i*2)+1]);
+		// }
 		
-		var pickups = this.currentSegment.coins;
-		var length = pickups.length/2;
+		// var pickups = this.currentSegment.coins;
+		// var length = pickups.length/2;
 		
-		for ( var i = 0; i < length; i++) 
-		{
-			this.engine.pickupManager.addPickup(this.currentSegment.start + pickups[i*2], pickups[(i*2)+1]);
-		}
+		// for ( var i = 0; i < length; i++) 
+		// {
+		// 	this.engine.pickupManager.addPickup(this.currentSegment.start + pickups[i*2], pickups[(i*2)+1]);
+		// }
 		
 		this.count ++;
 		

@@ -44,7 +44,7 @@ GAME.RprEngine.prototype.update = function () {
     this.steve.update();
     this.collisionManager.update();
 	this.floorManager.update();
-
+	this.segmentManager.update();
     this.view.update();
     
 }

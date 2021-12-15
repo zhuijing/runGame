@@ -33,7 +33,6 @@ GAME.FloorManager.prototype.update = function()
 
 GAME.FloorManager.prototype.addFloor = function(floorData)
 {
-	debugger
 	var floor = this.floorPool.getObject();
 	floor.x = floorData;
 	floor.position.y = 640 - 158;
