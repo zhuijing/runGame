@@ -21,9 +21,33 @@ GAME.CollisionManager.prototype.update = function () {
 	this.playerVsFloor();
 }
 
-GAME.CollisionManager.prototype.playerVsFloor = function () {
+GAME.CollisionManager.prototype.playerVsFloor = function()
+{
+	var floors = this.engine.floorManager.floors;
 	var steve = this.engine.steve;
-	if (steve.position.y > 650) {
-		steve.speed.x *= 0.95;
+	
+	var max = floors.length;
+	steve.onGround = false;
+	
+	if(steve.position.y > 610)
+	{
+		if(this.engine.isPlaying)
+		{
+			// steve.boil();
+			// this.engine.view.doSplash();
+			// this.engine.gameover();
+		}
+		else
+		{
+			steve.speed.x *= 0.95;
+		}
 	}
+	
+	
+
+    if(steve.position.y < 0)
+    {
+         steve.position.y = 0;
+         steve.speed.y *= 0;
+    }
 }

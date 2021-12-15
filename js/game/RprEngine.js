@@ -9,24 +9,42 @@ GAME.RprEngine = function () {
 	this.steve              = new GAME.Steve();
 	this.view               = new GAME.RprView(this);
 	this.collisionManager   = new GAME.CollisionManager(this);
-    // this.steve.view.visible =  false;
+	this.segmentManager     = new GAME.SegmentManager(this);
+	this.floorManager       = new GAME.FloorManager(this);
 
-    this.view = new GAME.RprView(this);
-    this.bulletMult = 1;
-    this.pickupCount = 0;
-    this.score = 0;
-    this.joyrideMode = false;
-    this.joyrideCountdown = 0;
-    this.isPlaying = false;
-    this.levelCount = 0;
+    
+	this.bulletMult = 1;
+	this.pickupCount = 0;
+	this.score = 0;
+	this.joyrideMode = false;
+	this.joyrideCountdown = 0;
+	this.isPlaying = false;
+	this.levelCount = 0;
     this.gameReallyOver = false;
     this.isDying = false;
+    
 }
 
+GAME.RprEngine.prototype.start = function()
+{
+    this.segmentManager.reset();
+	this.isPlaying = true;
+    this.gameReallyOver = false;
+	this.score = 0;
+	this.steve.level = 1;
+	this.steve.position.y = 477;
+	this.steve.speed.y = 0;
+	this.steve.speed.x = this.steve.baseSpeed;
+	this.steve.isFlying = false;
+	this.steve.isDead = false;
+}
 
 GAME.RprEngine.prototype.update = function () {
+	GAME.time.update();
     this.steve.update();
     this.collisionManager.update();
+	this.floorManager.update();
+
     this.view.update();
     
 }

@@ -124,7 +124,6 @@ function onTap(event) {
 
             game.start();
             gameMode = GAME_MODE.COUNT_DOWN;
-            FidoAudio.setVolume('runRegular', 1);
 
             if (black) {
                 TweenLite.to(black, 0.2, {
@@ -136,10 +135,6 @@ function onTap(event) {
                 alpha: 0,
                 onComplete: function () {
                     logo.visible = false;
-                    logo.setTexture(PIXI.Texture.fromFrame("gameOver.png"));
-                    game.view.showHud();
-                    game.view.hud.removeChild(black);
-                    countdown.startCountDown(onCountdownComplete);
                 }
             });
         } else if (gameMode === GAME_MODE.GAME_OVER) {
