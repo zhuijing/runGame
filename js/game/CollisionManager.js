@@ -42,6 +42,58 @@ GAME.CollisionManager.prototype.playerVsFloor = function () {
 
 
 
+	for (var i = 0; i < max; i++) 
+	{
+		var floor = floors[i];
+		var xdist = floor.x - steve.position.x + 1135;
+		
+		if(steve.position.y > 477)
+		{
+			if(xdist > 0 && xdist < 1135)
+			{
+				if(steve.isDead)
+				{
+					console.log(`1`, 1)
+					steve.bounce++;
+                    
+					if(steve.bounce > 2)
+					{						
+						return;
+					}
+					steve.view.setTexture(steve.crashFrames[steve.bounce])
+					steve.speed.y *= -0.7;
+					steve.speed.x *= 0.8;
+					
+					if(steve.rotationSpeed > 0)
+					{
+						steve.rotationSpeed = Math.random() * -0.3;
+					}
+					else if(steve.rotationSpeed === 0)
+					{
+						steve.rotationSpeed = Math.random() * 0.3;
+					}
+					else
+					{
+						steve.rotationSpeed = 0;
+					}
+				}
+				else
+				{
+					steve.speed.y = -0.3;
+				}
+				
+				if(!steve.isFlying)
+				{
+					steve.position.y = 478;
+					steve.onGround = true;
+					
+				}	
+			}
+		}
+	}
+
+
+
 	if (steve.position.y < 0) {
 		steve.position.y = 0;
 		steve.speed.y *= 0;

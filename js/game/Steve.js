@@ -62,6 +62,7 @@ GAME.Steve.prototype.update = function () {
 	this.updateRunning();
 }
 
+
 GAME.Steve.prototype.updateRunning = function()
 {
 	this.view.animationSpeed = this.realAnimationSpeed * GAME.time.DELTA_TIME * this.level;
@@ -100,7 +101,12 @@ GAME.Steve.prototype.updateRunning = function()
 		if(this.onGround)
 		{
 			this.view.textures = this.runningFrames;
-           
+            if(this.joyRiding === true) 
+            {
+            }
+            else
+            {
+            }
 		}
 		else
 		{
