@@ -116,3 +116,26 @@ GAME.Steve.prototype.updateRunning = function()
 	this.view.rotation += (this.speed.y * 0.05 - this.view.rotation) * 0.1;
 }
 
+GAME.Steve.prototype.jump = function()
+{
+	if(this.isDead)
+	{
+		if(this.speed.x < 5)
+		{
+			this.isDead = false
+			this.speed.x = 10;
+		}
+	}
+
+	if(this.position.y !== this.ground)
+	{
+		this.isFlying = true;
+	}
+	else
+	{
+		this.isActive = true;
+		this.activeCount = 0;
+	}
+}
+
+
