@@ -29,14 +29,30 @@ GAME.CollisionManager.prototype.playerVsFloor = function () {
 	steve.onGround = false;
 
 	if (steve.position.y > 610) {
-		if (this.engine.isPlaying) {} else {
-			steve.speed.x *= 0.95;
+		if(this.engine.isPlaying)
+		{
+			steve.boil();
+			this.engine.view.doSplash();
+			this.engine.gameover();
+			console.log(`333`, 333)
 		}
-		if (!steve.isFlying) {
-			// 如果不飞就在地板上跑
-			steve.position.y = 478;
-			steve.onGround = true;
+		else
+		{
+			steve.speed.x *= 0.95;
+			
+            if(!interactive)
+			{
+                interactive = true;
+            }
+            
+            if(steve.bounce === 0) {
+				console.log(`1111`, 1111)
+                steve.bounce++;
+                steve.boil();
+                this.engine.view.doSplash();
+            }
 
+			return;
 		}
 	}
 

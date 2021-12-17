@@ -43,7 +43,9 @@ GAME.RprEngine.prototype.start = function()
 	this.steve.speed.x = this.steve.baseSpeed;
 	this.steve.isFlying = false;
 	this.steve.isDead = false;
+	this.steve.view.play()
 	this.steve.view.visible = true;
+
 
 }
 

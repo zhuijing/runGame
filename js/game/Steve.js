@@ -28,7 +28,7 @@ GAME.Steve = function () {
         PIXI.Texture.fromFrame("characterFALLscaled3.png")
     ];
 
-	this.view = new PIXI.MovieClip(this.flyingFrames);
+	this.view = new PIXI.MovieClip(this.crashFrames);
 	this.view.animationSpeed = 0.23;
 	
 	this.view.anchor.x = 0.5;
@@ -93,7 +93,7 @@ GAME.Steve.prototype.updateRunning = function()
     var accel = this.speed.y - oldSpeed;
 	this.position.x += this.speed.x * GAME.time.DELTA_TIME * this.level;
 	this.position.y += this.speed.y * GAME.time.DELTA_TIME;
-	
+	// console.log(`this.onGround`, this.onGround, this.onGroundCache)
 	if(this.onGround !== this.onGroundCache)
 	{
 		this.onGroundCache = this.onGround;
@@ -101,12 +101,6 @@ GAME.Steve.prototype.updateRunning = function()
 		if(this.onGround)
 		{
 			this.view.textures = this.runningFrames;
-            if(this.joyRiding === true) 
-            {
-            }
-            else
-            {
-            }
 		}
 		else
 		{
