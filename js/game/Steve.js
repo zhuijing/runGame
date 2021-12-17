@@ -138,4 +138,8 @@ GAME.Steve.prototype.jump = function()
 	}
 }
 
-
+GAME.Steve.prototype.fall = function()
+{
+	this.isActive = false;
+	this.isFlying = false;
+}
