@@ -18,6 +18,7 @@ GAME.CollisionManager = function (engine) {
 GAME.CollisionManager.constructor = GAME.CollisionManager;
 
 GAME.CollisionManager.prototype.update = function () {
+	this.playerVsPickup()
 	this.playerVsFloor();
 }
 
@@ -113,5 +114,33 @@ GAME.CollisionManager.prototype.playerVsFloor = function () {
 	if (steve.position.y < 0) {
 		steve.position.y = 0;
 		steve.speed.y *= 0;
+	}
+}
+
+
+GAME.CollisionManager.prototype.playerVsPickup = function()
+{
+	
+	var pickups = this.engine.pickupManager.pickups;
+	var steve = this.engine.steve;
+	
+	for (var i = 0; i < pickups.length; i++) 
+	{
+		var pickup = pickups[i]
+		if(pickup.isPickedUp) continue;
+        
+		var xdist = pickup.position.x - steve.position.x;
+		if(xdist > -pickup.width/2 && xdist < pickup.width/2)
+		{
+			var ydist = pickup.position.y - steve.position.y;
+		
+			if(ydist > -pickup.height/2 && ydist < pickup.height/2)
+			{
+				this.engine.pickupManager.removePickup(i);
+				this.engine.pickup();
+                
+		//		i--;
+			}
+		}
 	}
 }

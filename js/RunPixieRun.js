@@ -215,8 +215,18 @@ function init() {
     this.game.view.container.mousedown = this.game.view.container.touchstart = function (event) {
         onTap(event);
     }
+    this.game.view.container.mouseup = this.game.view.container.touchend = function (event) {
+        onTouchEnd(event);
+    }
+    
     resize();
 }
+function onTouchEnd(event) {
+    event.originalEvent.preventDefault();
+    thrusters = false;
+    if (game.isPlaying) game.steve.fall();
+}
+
 function resize() {
     window.scrollTo(0, 0);
 
