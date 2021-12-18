@@ -135,6 +135,8 @@ function onTap(event) {
                 alpha: 0,
                 onComplete: function () {
                     logo.visible = false;
+                    game.view.showHud();
+
                 }
             });
         } else if (gameMode === GAME_MODE.GAME_OVER) {

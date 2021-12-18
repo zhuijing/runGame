@@ -137,7 +137,7 @@ GAME.CollisionManager.prototype.playerVsPickup = function()
 			if(ydist > -pickup.height/2 && ydist < pickup.height/2)
 			{
 				this.engine.pickupManager.removePickup(i);
-				// this.engine.pickup();
+				this.engine.pickup();
                 
 		//		i--;
 			}

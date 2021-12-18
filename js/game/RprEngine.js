@@ -65,6 +65,7 @@ GAME.RprEngine.prototype.pickup = function()
     if(this.steve.isDead) return; 
         
     this.score += 10;
+	this.view.score.jump();
     
 	this.pickupCount++;
 }

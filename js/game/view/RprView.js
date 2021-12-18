@@ -26,9 +26,19 @@ GAME.RprView = function (engine) {
 	this.stage.addChild(this.hud);
 
 
+	// 分数面板
+	// this.powerBar = new GAME.PowerBar();
+	this.score = new GAME.Score();
+	// this.bestScore = new GAME.BestScore();
+	this.score.position.x = 300;
+	this.score.alpha = 0;
+
+
+
 	// 初始背景
 	this.background = new GAME.Background();
 	this.game.addChild(this.background);
+	this.hud.addChild(this.score);
 
 	
 	this.lava = new GAME.Lava(this.gameFront);
@@ -78,8 +88,27 @@ GAME.RprView.prototype.update = function () {
 	this.dust.update();
 
 	this.lava.setPosition(GAME.camera.x + 4000);
+	console.log(`this.engine.score`, this.engine.score)
+    this.score.setScore(Math.round(this.engine.score));
 
 	this.renderer.render(this.stage);
+}
+
+GAME.RprView.prototype.showHud = function()
+{
+    var start = 
+    {
+        x : GAME.width + 300,
+        y : 0
+    };
+    
+	this.score.alpha = 1;
+	this.score.position.x = start.x;
+	TweenLite.to(this.score.position, 1, {
+        x : GAME.width - 295 - 20, 
+        ease : Elastic.easeOut
+    });
+   
 }
 
 GAME.RprView.prototype.resize = function (w, h) {
