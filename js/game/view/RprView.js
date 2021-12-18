@@ -27,11 +27,17 @@ GAME.RprView = function (engine) {
 
 
 	// 分数面板
-	// this.powerBar = new GAME.PowerBar();
+
 	this.score = new GAME.Score();
-	// this.bestScore = new GAME.BestScore();
 	this.score.position.x = 300;
 	this.score.alpha = 0;
+	// 能量板
+	this.powerBar = new GAME.PowerBar();
+	this.powerBar.alpha = 0;
+
+
+	// this.bestScore = new GAME.BestScore();
+	
 
 
 
@@ -39,6 +45,8 @@ GAME.RprView = function (engine) {
 	this.background = new GAME.Background();
 	this.game.addChild(this.background);
 	this.hud.addChild(this.score);
+	this.hud.addChild(this.powerBar);
+
 
 	
 	this.lava = new GAME.Lava(this.gameFront);
@@ -88,8 +96,11 @@ GAME.RprView.prototype.update = function () {
 	this.dust.update();
 
 	this.lava.setPosition(GAME.camera.x + 4000);
-	console.log(`this.engine.score`, this.engine.score)
+	// 更新得分
     this.score.setScore(Math.round(this.engine.score));
+	// 更新能量条
+	this.powerBar.bar.scale.x = ( (this.engine.pickupCount/(50 *  this.engine.bulletMult) )*(248/252) )
+
 
 	this.renderer.render(this.stage);
 }
@@ -107,6 +118,14 @@ GAME.RprView.prototype.showHud = function()
 	TweenLite.to(this.score.position, 1, {
         x : GAME.width - 295 - 20, 
         ease : Elastic.easeOut
+    });
+
+	this.powerBar.alpha = 1;
+	this.powerBar.position.x = GAME.width;
+	TweenLite.to(this.powerBar.position, 1, {
+        x : GAME.width - 295, 
+        ease : Elastic.easeOut, 
+        delay : 0.3
     });
    
 }

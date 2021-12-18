@@ -17,7 +17,7 @@ GAME.RprEngine = function () {
     this.steve.view.visible =  false;
 
 
-    
+    // 与能量相关
 	this.bulletMult = 1;
 	this.pickupCount = 0;
 	this.score = 0;
@@ -45,6 +45,7 @@ GAME.RprEngine.prototype.start = function()
 	this.steve.isDead = false;
 	this.steve.view.play()
 	this.steve.view.visible = true;
+	this.bulletMult = 1;
 
 
 }
