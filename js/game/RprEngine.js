@@ -60,6 +60,14 @@ GAME.RprEngine.prototype.update = function () {
     this.view.update();
     
 }
+GAME.RprEngine.prototype.pickup = function()
+{
+    if(this.steve.isDead) return; 
+        
+    this.score += 10;
+    
+	this.pickupCount++;
+}
 
 
 
