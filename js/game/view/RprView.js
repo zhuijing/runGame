@@ -36,7 +36,8 @@ GAME.RprView = function (engine) {
 	this.powerBar.alpha = 0;
 
 
-	// this.bestScore = new GAME.BestScore();
+	this.bestScore = new GAME.BestScore();
+	this.bestScore.alpha = 0;
 	
 
 
@@ -46,6 +47,8 @@ GAME.RprView = function (engine) {
 	this.game.addChild(this.background);
 	this.hud.addChild(this.score);
 	this.hud.addChild(this.powerBar);
+	this.hud.addChild(this.bestScore);
+
 
 
 	
@@ -101,6 +104,9 @@ GAME.RprView.prototype.update = function () {
 	// 更新能量条
 	this.powerBar.bar.scale.x = ( (this.engine.pickupCount/(50 *  this.engine.bulletMult) )*(248/252) )
 
+	// 跟新最高得分
+	this.bestScore.update();	
+
 
 	this.renderer.render(this.stage);
 }
@@ -127,16 +133,37 @@ GAME.RprView.prototype.showHud = function()
         ease : Elastic.easeOut, 
         delay : 0.3
     });
+
+	this.bestScore.alpha = 1;
+	this.bestScore.position.x = start.x;
+	this.bestScore.position.y -= 14;
+	TweenLite.to(this.bestScore.position, 1, {
+        x : GAME.width - 20, 
+        ease : Elastic.easeOut
+    });
    
 }
 
-GAME.RprView.prototype.resize = function (w, h) {
-	//    console.log("Width ->" + w);
-	//    console.log("Height -> " + h);
+GAME.RprView.prototype.resize = function(w, h)
+{
+//    console.log("Width ->" + w);
+//    console.log("Height -> " + h);
 
 	GAME.width = w;
 	GAME.height = h;
-
-	this.renderer.resize(w, h);
-
+    
+	this.renderer.resize(w,h);
+	this.background.width = w;
+    
+	this.bestScore.position.x = w - 20;
+	this.bestScore.position.y = 100;
+    
+	this.score.position.x = w - 295 - 20;
+	this.score.position.y = 12;
+    
+	this.white.scale.x = w/16;
+	this.white.scale.y = h/16;
+    
+	this.powerBar.position.x = w - 295;
+	this.powerBar.position.y = 12;
 }
