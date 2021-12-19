@@ -138,6 +138,38 @@ GAME.Steve.prototype.jump = function()
 	}
 }
 
+
+GAME.Steve.prototype.die = function()
+{
+	if(this.isDead) return;
+	TweenLite.to(GAME.time, 0.5, {
+        speed : 0.1, 
+        ease : Cubic.easeOut, 
+        onComplete : function()
+        {
+            TweenLite.to(GAME.time, 2, {
+                speed : 1, 
+                delay : 1
+            });
+        }
+    });
+
+	this.isDead = true;
+	this.bounce = 0;
+	this.speed.x = 15;
+	this.speed.y = -15;
+	this.rotationSpeed = 0.3;
+	this.view.stop();
+}
+
+GAME.Steve.prototype.boil = function()
+{
+	if(this.isDead) return;
+    
+	this.isDead = true;
+}
+
+
 GAME.Steve.prototype.fall = function()
 {
 	this.isActive = false;

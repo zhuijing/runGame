@@ -30,12 +30,8 @@ GAME.Enemy.prototype.reset = function()
 GAME.Enemy.prototype.hit = function()
 {   
     if(this.isHit) return;
-
-    FidoAudio.stop('blockHit');
-    FidoAudio.play('blockHit');
-    
     this.isHit = true;
-    
+    // 爆炸效果
 	if(!this.explosion) this.explosion = new GAME.Explosion();
     
 	this.explosion.explode();
