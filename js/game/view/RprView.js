@@ -63,6 +63,8 @@ GAME.RprView = function (engine) {
 	this.dust = new GAME.PixiDust();
 	this.container.addChild(this.dust);
 
+
+
 }
 
 GAME.RprView.constructor = GAME.RprView;
@@ -110,6 +112,8 @@ GAME.RprView.prototype.update = function () {
 
 	this.renderer.render(this.stage);
 }
+
+
 
 GAME.RprView.prototype.showHud = function()
 {

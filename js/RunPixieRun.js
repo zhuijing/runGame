@@ -273,3 +273,19 @@ function update() {
     requestAnimFrame(update);
 
 }
+
+
+function showGameover()
+{
+    logo.visible = true;
+    TweenLite.to(logo, 0.3, {
+        alpha:1, 
+        onComplete : onGameoverShown
+    });
+}
+
+function onGameoverShown()
+{
+    this.isGameReallyOver = true;
+	interactive = true;
+}

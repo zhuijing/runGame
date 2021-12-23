@@ -32,16 +32,18 @@ GAME.CollisionManager.prototype.playerVsFloor = function () {
 	steve.onGround = false;
 
 	if (steve.position.y > 610) {
+		// 
 		if(this.engine.isPlaying)
 		{
+			console.log(`状态1`)
 			// 撞机木头后死亡
 			steve.boil();
-			// this.engine.view.doSplash();
-			// this.engine.gameover();
-			console.log(`333`, 333)
+
+			this.engine.gameover();
 		}
 		else
 		{
+			console.log(`状态2`)
 			steve.speed.x *= 0.95;
 			
             if(!interactive)
@@ -50,10 +52,9 @@ GAME.CollisionManager.prototype.playerVsFloor = function () {
             }
             
             if(steve.bounce === 0) {
-				console.log(`1111`, 1111)
                 steve.bounce++;
                 steve.boil();
-                this.engine.view.doSplash();
+
             }
 
 			return;

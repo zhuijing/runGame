@@ -1,0 +1,40 @@
+默认是在地上
+	this.position.y = 477;
+
+不断执行y++
+
+不断调用 playerVsFloor
+
+判断人物位置
+
+if (steve.position.y > 610) {
+		// 是否游戏中
+		if(this.engine.isPlaying)
+		{
+            如果大于
+			// 撞机木头后死亡
+			steve.boil();
+
+			this.engine.gameover();
+			console.log(`333`, 333)
+		}
+		else
+		{
+			steve.speed.x *= 0.95;
+			
+            if(!interactive)
+			{
+                interactive = true;
+            }
+            
+            if(steve.bounce === 0) {
+				console.log(`1111`, 1111)
+                steve.bounce++;
+                steve.boil();
+
+            }
+
+			return;
+		}
+	}
+
